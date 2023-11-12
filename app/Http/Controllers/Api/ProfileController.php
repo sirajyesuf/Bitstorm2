@@ -31,6 +31,7 @@ class ProfileController extends Controller
 
     public function update_phone(Request $request){
 
+
         $request->user()->update(['phone' => $request->input('phone')]);
         
         return response()->json(['message' => "Profile information has been updated successfully"]);
