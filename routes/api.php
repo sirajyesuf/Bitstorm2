@@ -49,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
 
+
     Route::prefix('v1/user/info')->group(function(){
         Route::post('updateName',[ProfileController::class,'update_name']);
         Route::post('updatePhone',[ProfileController::class,'update_phone']);
@@ -56,6 +57,9 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('updateAvatar',[ProfileController::class,'update_avatar']);
         Route::get('{user_id}',[ProfileController::class,'show']);
     });
+
+
+
     
 
 

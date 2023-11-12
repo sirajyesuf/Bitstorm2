@@ -78,7 +78,7 @@ class AuthController extends Controller
             'message' => 'Successfully logged in.',
             'access_token' =>  $token->plainTextToken,
             'token_type' => 'Bearer',
-            'expires_at' => $token->expires_at,
+            'expires_at' => null,
             'user'  =>  new UserResource($user)
         ];
 
