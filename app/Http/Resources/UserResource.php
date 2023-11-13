@@ -28,7 +28,8 @@ class UserResource extends JsonResource
             "city" => null,
             "country" => null,
             "postal_code" => null,
-            "phone" => $this->phone
+            "phone" => $this->phone,
+            "fcm_token" => $this->fcm_token
 
         ];
     }

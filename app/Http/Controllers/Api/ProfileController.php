@@ -64,4 +64,26 @@ class ProfileController extends Controller
         return new UserResource(request()->user());
  
     }
+
+
+    public function setfcm_token(Request $request){
+
+        $validator = Validator::make($request->all(),[ 
+
+                'fcm_token' => 'required',
+        ]);   
+        
+        if($validator->fails()) {          
+            
+            return response()->json(['error'=>$validator->errors()], 422);                        
+        } 
+
+        $request->user()->update(['fcm_token' => $request->input('fcm_token')]);
+
+        return response()->json(['message' => "Profile information has been updated successfully"]);
+
+    
+
+    
+    }
 }
