@@ -27,6 +27,8 @@ Route::prefix('v2/notifications')->group(function(){
 Route::middleware('auth:sanctum')->group(function(){
 
 
+    Route::post('v2/auth/logout',[AuthController::class,'logout']);
+
     Route::get('v2/notifications/list',function(Request $req){
         return response()->json(["notifications" => $req->user()->notifications]);
     });
@@ -56,6 +58,8 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('updatePassword',[ProfileController::class,'update_password']);
         Route::post('updateAvatar',[ProfileController::class,'update_avatar']);
         Route::get('{user_id}',[ProfileController::class,'show']);
+
+        Route::post('setfcmtoken',[ProfileController::class,'setfcm_token']);
     });
 
 
