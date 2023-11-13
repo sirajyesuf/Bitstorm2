@@ -41,7 +41,7 @@ Route::middleware('auth:sanctum')->group(function(){
     
             Route::get('category/{id}',[ProductController::class,'category'])->name('category');
             Route::get('featured',[ProductController::class,'featured']);
-            Route::get('search',[ProductController::class,'search']);
+            Route::post('search',[ProductController::class,'search']);
         
         });
         

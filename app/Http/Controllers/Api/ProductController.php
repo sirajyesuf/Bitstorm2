@@ -27,15 +27,19 @@ class ProductController extends Controller
     
         // Optional parameters: min, max, and sort_by
         $query->when($request->has('min'), function ($query) use ($request) {
-            return $query->where('price', '>=', $request->input('min'));
+
+            return $query->where('price', '>=',(int) $request->input('min'));
         });
     
         $query->when($request->has('max'), function ($query) use ($request) {
-            return $query->where('price', '<=', $request->input('max'));
+
+            return $query->where('price', '<=', (int) $request->input('max'));
         });
     
-        $query->when($request->has('sort_by'), function ($query) use ($request) {
-            return $query->orderBy($request->input('sort_by'));
+        $query->when($request->has('sortby'), function ($query) use ($request) {
+
+
+            return $query->orderBy($request->input('sortby'));
         });
     
       
