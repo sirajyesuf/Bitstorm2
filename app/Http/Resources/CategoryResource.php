@@ -20,10 +20,7 @@ class CategoryResource extends JsonResource
             'banner' => 'banner',
             'icon' => 'icon',
             'number_of_children' => 0,
-            'links' => [
-                
-                'products' => url(route('products.category',['id' => $this->id]))
-            ]
+            'products' => url(route('products.category',['id' => $this->id])),
         ];
     }
 }
