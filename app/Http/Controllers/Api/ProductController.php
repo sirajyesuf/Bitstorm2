@@ -14,7 +14,7 @@ class ProductController extends Controller
 
     public function featured(){
 
-        return new ProductCollection(Product::where('is_featured',true)->paginate());
+        return new ProductCollection(Product::where('is_featured',true)->get());
     
     }
 
