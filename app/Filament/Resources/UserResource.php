@@ -27,7 +27,7 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('name'),
                 Forms\Components\TextInput::make('email'),
                 Forms\Components\TextInput::make('phone'),
-                Forms\Components\FileUpload::make('avator')
+                Forms\Components\FileUpload::make('avatar')
                 ->columnSpan(2)
                 ->image()
             ]);
