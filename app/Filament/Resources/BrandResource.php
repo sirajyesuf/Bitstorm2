@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\TablesServiceProvider;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -25,7 +26,10 @@ class BrandResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                 ->required()
-                ->unique()
+                ->unique(ignoreRecord: true),
+                Forms\Components\FileUpload::make('image')
+                ->image()
+                ->required(),
             ]);
     }
 
@@ -35,12 +39,14 @@ class BrandResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                 ->searchable(),
+
+                Tables\Columns\ImageColumn::make('image')
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                // Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),
