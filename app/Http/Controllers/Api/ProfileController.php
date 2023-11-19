@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
@@ -22,7 +23,10 @@ class ProfileController extends Controller
 
     public function update_password(Request $request){
 
-        $request->user()->update(['password' => $request->input('password')]);
+        $request->user()->update(['password' => Hash::make($request->input('password'))]);
+
+
+        $request->user()->tokens()->delete();
 
         return response()->json(['message' => "Profile information has been updated successfully"]);
 
