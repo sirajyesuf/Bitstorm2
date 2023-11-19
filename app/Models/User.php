@@ -9,11 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable  implements FilamentUser
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
 
     public function canAccessPanel(Panel $panel): bool
     {
