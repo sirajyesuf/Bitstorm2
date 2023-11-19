@@ -21,19 +21,15 @@ Route::prefix('v2/auth')->group(function(){
 });
 
 
-Route::prefix('v2/notifications')->group(function(){
-
-    Route::get('list/{user_id}',[ProfileController::class,]);
-
-});
-
 Route::middleware('auth:sanctum')->group(function(){
 
 
     Route::post('v2/auth/logout',[AuthController::class,'logout']);
 
     Route::get('v2/notifications/list',function(Request $req){
+
         return response()->json(["notifications" => $req->user()->notifications]);
+
     });
 
     Route::post('v1/notified-product',[ProductController::class,'alert']);
@@ -77,11 +73,6 @@ Route::middleware('auth:sanctum')->group(function(){
 
 });
 
-
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 
 
