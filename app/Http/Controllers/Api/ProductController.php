@@ -55,8 +55,6 @@ class ProductController extends Controller
     public function alert(Request $request){
 
 
-        // $user_id = $request->input('user_id');
-
         $request->validate([
 
             'product_id' => 'required',
@@ -76,5 +74,12 @@ class ProductController extends Controller
             'message' => 'done'
         ];
 
+    }
+
+
+    public function brand ($id){
+
+        return new ProductCollection(Product::where('brand_id',$id)->paginate());
+    
     }
 }

@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\Category;
+use App\Models\Brand;
 
 class ProductResource extends Resource
 {
@@ -32,6 +33,13 @@ class ProductResource extends Resource
                 Forms\Components\Select::make('category_id')
                 ->label('Category')
                 ->options(Category::all()->pluck('name', 'id'))
+                ->required()
+                ->columnSpan(2),
+
+
+                Forms\Components\Select::make('brand_id')
+                ->label('Brand')
+                ->options(Brand::all()->pluck('name', 'id'))
                 ->required(),
 
                
@@ -59,6 +67,7 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('category.name'),
+                Tables\Columns\TextColumn::make('brand.name'),
                 Tables\Columns\TextColumn::make('description')
                 ->limit(20),
                 Tables\Columns\TextColumn::make('price'),
