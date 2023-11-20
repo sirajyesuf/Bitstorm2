@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             "name" => $this->name,
             "type" => "customer",
             "email" => $this->email,
-            "avatar" => asset($this->avatar),
+            "avatar" => asset('storage/'.$this->avatar),
             "avatar_original" => "",
             "address" => null,
             "city" => null,

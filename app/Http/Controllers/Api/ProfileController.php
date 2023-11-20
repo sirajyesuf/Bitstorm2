@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProfileController extends Controller
 {
@@ -55,9 +57,11 @@ class ProfileController extends Controller
             return response()->json(['error'=>$validator->errors()], 422);                        
         } 
 
-        $path = $request->file('image')->store();
+        $path = $request->file('image')->store('public');
 
-        $request->user()->update(['avatar' => $path ]);
+        $newPath = str_replace("public/", "", $path);
+
+        $request->user()->update(['avatar' => $newPath ]);
 
         return response()->json(['message' => "Profile information has been updated successfully"]);
 
