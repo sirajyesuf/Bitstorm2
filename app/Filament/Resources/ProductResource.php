@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\Category;
 use App\Models\Brand;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductResource extends Resource
 {
@@ -58,6 +59,8 @@ class ProductResource extends Resource
                 Forms\Components\FileUpload::make('image')
                 ->required()
                 ->columnSpan(2),
+
+                
             ]);
     }
 
@@ -71,7 +74,13 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                 ->limit(20),
                 Tables\Columns\TextColumn::make('price'),
-                Tables\Columns\ImageColumn::make('image')
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('Alerts')
+                ->state(function (Model $record): float {
+                    return $record->users()->count();
+                })
+            
+            
             ])
             ->filters([
                 //

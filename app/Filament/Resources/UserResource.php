@@ -41,7 +41,8 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email')
                 ->default("empty"),
                 Tables\Columns\TextColumn::make('phone')
-                ->default("empty")
+                ->default("empty"),
+                Tables\Columns\ImageColumn::make('avatar')
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
