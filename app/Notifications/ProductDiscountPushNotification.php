@@ -28,7 +28,7 @@ class ProductDiscountPushNotification extends Notification
 
     public function via(object $notifiable): array
     {
-        return [FcmChannel::class,'database'];
+        return ['database',FcmChannel::class];
     }
 
 
